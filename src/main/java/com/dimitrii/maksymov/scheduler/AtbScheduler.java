@@ -36,6 +36,7 @@ public class AtbScheduler {
                 .queryParam("query", "Пельмені 0,5 кг EcoSmac")
                 .build()
                 .toUri();
+        log.info("uri - {}", uri);
 
         MultiSearch searchEntity = restClient
                 .get()
