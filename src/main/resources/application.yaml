@@ -1,0 +1,31 @@
+server:
+  port: ${APP_SERVICE_PORT:8080}
+
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  application:
+    name: app_atb_scheduler
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:uri}
+      database: ${MONGODB_DATABASE:app-telegram-db}
+
+scheduler:
+  cron: ${CRON:* */15 * * * *}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - prometheus
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
